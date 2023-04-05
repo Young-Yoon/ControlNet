@@ -1,0 +1,13 @@
+GaussianBlur: [7, 13, 21, 31, 45, 65]
+Einstein's lecture
+best quality, extremely detailed
+longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality
+1
+512
+384
+20
+False
+1
+9
+914586805
+0.0
