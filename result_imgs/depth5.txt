@@ -1,4 +1,4 @@
-GaussianBlur: [7, 13, 21, 31, 45, 65]
+bilateral: [(0, 7, 7), (0, 10.5, 7), (0, 14, 7), (0, 21, 7), (0, 13, 13), (0, 19.5, 13), (0, 26, 13), (0, 39, 13), (0, 21, 21), (0, 31.5, 21), (0, 42, 21), (0, 63, 21), (0, 31, 31), (0, 46.5, 31), (0, 62, 31), (0, 93, 31), (0, 45, 45), (0, 67.5, 45), (0, 90, 45), (0, 135, 45), (0, 65, 65), (0, 97.5, 65), (0, 130, 65), (0, 195, 65)]
 dog
 best quality, extremely detailed
 longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality
@@ -9,5 +9,5 @@ longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer di
 False
 1
 9
-599562106
+893979278
 0.0

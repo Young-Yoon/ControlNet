@@ -9,11 +9,15 @@ import os
 
 
 def process_core(prompt, a_prompt, n_prompt, num_samples, image_resolution, detect_resolution, ddim_steps, guess_mode, strength, scale, seed, eta,
-        detected_map, model, H, W, ddim_sampler, mode, kernels):
-    detected_map_blur = [detected_map] + [cv2.GaussianBlur(detected_map, (k, k), 0) for k in kernels]
+        detected_map, model, H, W, ddim_sampler, mode, map_filter):
+    detected_map_list = [detected_map]
+    if map_filter['type'] == 'Gaussian':
+        detected_map_list += [cv2.GaussianBlur(detected_map, (k, k), 0) for k in map_filter["kernel"]]
+    elif map_filter['type'] == 'bilateral':
+        detected_map_list += [cv2.bilateralFilter(detected_map, *k) for k in map_filter["kernel"]]
 
     results, results_img = [], None
-    for detected_map in detected_map_blur:
+    for detected_map in detected_map_list:
         if mode == 'normal':
             detected_map = detected_map[:, :, ::-1]
         control = torch.from_numpy(detected_map.copy()).float().cuda() / 255.0
@@ -55,9 +59,10 @@ def process_core(prompt, a_prompt, n_prompt, num_samples, image_resolution, dete
         else:
             results_img = cv2.vconcat([results_img, cv2.hconcat(result)])
 
-    fileno = len([s for s in os.listdir('result_imgs') if s.endswith('.txt')])
+    fileno = len([s for s in os.listdir('result_imgs') if s.startswith(mode) and s.endswith('.txt')])
     with open(f'result_imgs/{mode}{fileno}.txt', 'w') as f:
-        f.write(f'GaussianBlur: {kernels}\n')
+        if map_filter is not None:
+            f.write(f'{map_filter["type"]}: {map_filter["kernel"]}\n')
         for param in [prompt, a_prompt, n_prompt, num_samples, image_resolution, detect_resolution, ddim_steps, guess_mode, strength, scale, seed, eta]:
             f.write(f'{param}\n')
     cv2.imwrite(f'result_imgs/{mode}{fileno}.jpg', cv2.cvtColor(results_img, cv2.COLOR_RGB2BGR))

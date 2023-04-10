@@ -1,0 +1,13 @@
+GaussianBlur: [7, 13, 21, 31, 45, 65]
+dog
+best quality, extremely detailed
+longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality
+2
+512
+384
+20
+False
+1
+9
+893979278
+0.0

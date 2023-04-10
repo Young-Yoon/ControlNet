@@ -1,8 +1,8 @@
-GaussianBlur: [7, 13, 21, 31, 45, 65]
-Einstein's lecture
+bilateral: [(0, 80, 7), (0, 120, 7), (0, 180, 7), (0, 360, 7), (0, 80, 13), (0, 120, 13), (0, 180, 13), (0, 360, 13), (0, 80, 21), (0, 120, 21), (0, 180, 21), (0, 360, 21), (0, 80, 31), (0, 120, 31), (0, 180, 31), (0, 360, 31), (0, 80, 45), (0, 120, 45), (0, 180, 45), (0, 360, 45), (0, 80, 65), (0, 120, 65), (0, 180, 65), (0, 360, 65)]
+Stormtrooper's lecture
 best quality, extremely detailed
 longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality
-1
+2
 512
 384
 20

@@ -28,9 +28,12 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
         H, W, C = img.shape
 
         detected_map = cv2.resize(detected_map, (W, H), interpolation=cv2.INTER_LINEAR)
-        kernels = [7, 13, 21, 31, 45, 65]
+        map_filter = {'type':'bilateral', 'kernel': [(0, v, k) for k in [7, 13, 21, 31, 45, 65] for v in [80, 120, 180, 360]]}
+            #{'type':'Gaussian', 'kernel': [7, 13, 21, 31, 45, 65]}
+            #{'type':'bilateral', 'kernel': [(k, a*k, b*k) for k in [7, 13, 21, 31, 45, 65] for a in [1, 1.5, 2, 3] for b in [1, 1.5, 2, 3]]}  # depth4
+            #{'type':'bilateral', 'kernel': [(0, a*k, k) for k in [7, 13, 21, 31, 45, 65] for a in [1, 1.5, 2, 3]]}  # depth5
     return process_core(prompt, a_prompt, n_prompt, num_samples, image_resolution, detect_resolution, ddim_steps, guess_mode, strength, scale, seed, eta,
-        detected_map, model, H, W, ddim_sampler, 'depth', kernels)
+            detected_map, model, H, W, ddim_sampler, 'depth', map_filter)
 
 block = gr.Blocks().queue()
 with block:
